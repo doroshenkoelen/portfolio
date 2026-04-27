@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olena Doroshenko — XR Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #07090F; --navy2: #0D1120; --navy3: #141828;
+  --cyan: #00D4FF; --cyan-glow: #00D4FF22;
+  --purple: #8B5CF6; --white: #FFFFFF; --off: #F0F4FF;
+  --muted: #8892AA; --rule: #1E2540;
+  --mono: 'Space Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --body: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--body); background: var(--navy); color: var(--off); line-height: 1.6; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.012) 2px, rgba(0,212,255,0.012) 4px); pointer-events: none; z-index: 9998; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(7,9,15,0.88); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--rule); }
+.nav-logo { font-family: var(--mono); font-size: 12px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--cyan); }
+
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 3rem 4rem; gap: 4rem; position: relative; overflow: hidden; }
+.hero::after { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%); pointer-events: none; }
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--cyan); display: inline-block; }
+h1.name { font-family: var(--display); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+h1.name span { color: var(--cyan); }
+.hero-title { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 1.75rem; }
+.hero-bio { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 480px; margin-bottom: 2rem; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.5rem; background: var(--cyan); color: var(--navy); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-radius: 3px; transition: opacity 0.2s, transform 0.2s; border: none; cursor: pointer; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.5rem; background: transparent; color: var(--cyan); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 0.5px solid var(--cyan); border-radius: 3px; transition: background 0.2s, transform 0.2s; }
+.btn-secondary:hover { background: var(--cyan-glow); transform: translateY(-1px); }
+
+.hero-photo { display: flex; justify-content: center; align-items: center; position: relative; }
+.photo-frame { position: relative; width: 340px; height: 420px; }
+.photo-frame::before { content: ''; position: absolute; inset: -2px; border-radius: 8px; background: linear-gradient(135deg, var(--cyan), transparent 50%, var(--purple)); z-index: 0; }
+.photo-inner { position: relative; z-index: 1; width: 100%; height: 100%; border-radius: 7px; background: var(--navy3); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.photo-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-placeholder-text { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.1em; line-height: 1.8; }
+.photo-corner { position: absolute; width: 16px; height: 16px; border-color: var(--cyan); border-style: solid; z-index: 2; }
+.photo-corner.tl { top: -8px; left: -8px; border-width: 2px 0 0 2px; }
+.photo-corner.tr { top: -8px; right: -8px; border-width: 2px 2px 0 0; }
+.photo-corner.bl { bottom: -8px; left: -8px; border-width: 0 0 2px 2px; }
+.photo-corner.br { bottom: -8px; right: -8px; border-width: 0 2px 2px 0; }
+.photo-tag { position: absolute; bottom: -1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; white-space: nowrap; }
+
+section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
+.section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+.section-title { font-family: var(--display); font-size: 2rem; font-weight: 600; color: var(--white); margin-bottom: 2.5rem; letter-spacing: -0.01em; }
+
+.edu-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.edu-row { display: grid; grid-template-columns: 130px 1fr 1fr; align-items: center; gap: 1.5rem; background: var(--navy2); border: 0.5px solid var(--rule); border-left: 2px solid transparent; border-radius: 6px; padding: 1rem 1.5rem; transition: border-color 0.2s, border-left-color 0.2s; }
+.edu-row:hover { border-color: rgba(0,212,255,0.25); border-left-color: var(--cyan); }
+.edu-year { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; white-space: nowrap; }
+.edu-degree { font-size: 13.5px; font-weight: 500; color: var(--white); line-height: 1.4; }
+.edu-school { font-size: 12px; color: var(--muted); line-height: 1.5; text-align: right; }
+
+.projects-header { padding: 3rem 3rem 0; max-width: 1100px; margin: 0 auto; }
+.projects-big-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.projects-big-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+.projects-big-title { font-family: var(--display); font-size: 3.5rem; font-weight: 700; color: var(--white); margin-bottom: 2.5rem; letter-spacing: -0.03em; line-height: 1; }
+
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding: 0 3rem 5rem; max-width: 1100px; margin: 0 auto; }
+.project-card { background: var(--navy2); border: 0.5px solid var(--rule); border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; transition: border-color 0.25s, transform 0.25s; }
+.project-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-3px); }
+.project-img { width: 100%; height: 200px; background: var(--navy3); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.project-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.project-card:hover .project-img img { transform: scale(1.04); }
+.project-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.project-img-icon { width: 48px; height: 48px; border: 1px solid var(--rule); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.project-img-icon svg { width: 22px; height: 22px; stroke: var(--cyan); fill: none; stroke-width: 1.5; }
+.project-img-hint { font-family: var(--mono); font-size: 9px; color: var(--rule); letter-spacing: 0.08em; margin-top: 4px; }
+.project-hover-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, rgba(7,9,15,0.85)); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+.project-card:hover .project-hover-overlay { opacity: 1; }
+.overlay-hint { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; }
+.project-info { padding: 1.25rem 1.5rem 1.5rem; }
+.project-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+.project-name { font-family: var(--display); font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; line-height: 1.3; }
+.project-blurb { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; padding-top: 0.2rem; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.ptag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; border: 0.5px solid var(--rule); border-radius: 2px; color: var(--muted); letter-spacing: 0.06em; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(7,9,15,0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+.modal { background: var(--navy2); border: 0.5px solid rgba(0,212,255,0.25); border-radius: 10px; width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto; position: relative; transform: translateY(20px) scale(0.97); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+.modal-overlay.active .modal { transform: translateY(0) scale(1); }
+.modal::-webkit-scrollbar { width: 4px; }
+.modal::-webkit-scrollbar-track { background: var(--navy); }
+.modal::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.modal-close { position: sticky; top: 0; z-index: 10; display: flex; justify-content: flex-end; padding: 1rem 1rem 0; background: var(--navy2); }
+.close-btn { background: var(--rule); border: none; color: var(--muted); font-family: var(--mono); font-size: 11px; padding: 0.4rem 0.9rem; border-radius: 3px; cursor: pointer; transition: color 0.2s, background 0.2s; letter-spacing: 0.08em; }
+.close-btn:hover { color: var(--white); background: #2a3050; }
+.modal-body { padding: 1.5rem 2rem 2.5rem; }
+.modal-meta { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.modal-title { font-family: var(--display); font-size: 1.65rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; line-height: 1.25; }
+.modal-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.7; padding-top: 0.25rem; }
+.poster-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.poster-img { width: 100%; border-radius: 6px; border: 0.5px solid var(--rule); display: block; margin-bottom: 1.75rem; }
+.modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
+.modal-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.75rem; }
+.modal-img-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; border: 0.5px solid var(--rule); display: block; }
+.modal-img-grid .img-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
+.modal-img-grid .img-stack img { height: 86px; }
+.modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
+.mstat { background: var(--navy); border: 0.5px solid var(--rule); border-radius: 5px; padding: 0.9rem 1rem; text-align: center; }
+.mstat-num { font-family: var(--mono); font-size: 1.4rem; color: var(--cyan); margin-bottom: 0.3rem; }
+.mstat-label { font-size: 11px; color: var(--muted); }
+.modal-section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.9rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.modal-section-title::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
+.modal-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; margin-bottom: 0.5rem; }
+.mbullet { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 13px; color: #C0C8DC; line-height: 1.6; }
+.mbullet::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 8px; }
+.modal-callout { background: var(--navy); border-left: 2px solid var(--cyan); padding: 1rem 1.25rem; border-radius: 0 5px 5px 0; font-size: 13px; color: #C0C8DC; line-height: 1.75; margin: 1rem 0; }
+.modal-outcomes { display: flex; flex-direction: column; }
+.moutcome { display: flex; gap: 0.9rem; align-items: flex-start; padding: 0.7rem 0; border-bottom: 0.5px solid var(--rule); }
+.moutcome:last-child { border-bottom: none; }
+.mout-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--cyan-glow); border: 1px solid var(--cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.mout-dot::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); }
+.mout-label { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 1px; }
+.mout-detail { font-size: 12px; color: var(--muted); }
+.mout-link { font-size: 12px; color: var(--cyan); text-decoration: none; }
+.mout-link:hover { text-decoration: underline; }
+.modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--rule); }
+.mtag { font-family: var(--mono); font-size: 10px; padding: 3px 10px; border: 0.5px solid rgba(0,212,255,0.25); border-radius: 2px; color: var(--cyan); letter-spacing: 0.06em; }
+
+.contact-section { text-align: center; padding: 4rem 3rem 6rem; border-top: 0.5px solid var(--rule); max-width: 600px; margin: 0 auto; }
+.contact-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; }
+.contact-title { font-family: var(--display); font-size: 2.2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+.contact-sub { font-size: 14px; color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+.contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-size: 10px; color: var(--rule); border-top: 0.5px solid var(--rule); letter-spacing: 0.08em; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-text > * { animation: fadeUp 0.7s ease both; }
+.hero-text > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.12s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.18s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.24s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.3s; }
+.hero-photo { animation: fadeUp 0.8s 0.35s ease both; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 2.5rem; }
+  .hero-photo { order: -1; }
+  .photo-frame { width: 240px; height: 300px; }
+  section { padding: 3.5rem 1.5rem; }
+  .edu-row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .edu-school { text-align: left; }
+  .projects-grid { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
+  .projects-header { padding: 3rem 1.5rem 0; }
+  .modal-bullets { grid-template-columns: 1fr; }
+  .modal-img-grid { grid-template-columns: 1fr; }
+  .modal-body { padding: 1.25rem 1.25rem 2rem; }
+  .projects-big-title { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">OD // Portfolio</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero" id="about">
+  <div class="hero-text">
+    <div class="hero-eyebrow">XR Developer &amp; Researcher</div>
+    <h1 class="name">Olena<br><span>Doroshenko</span></h1>
+    <p class="hero-title">M.S. Computer Science · NYIT · 2026</p>
+    <p class="hero-bio">I build AR systems that see what cameras can't. My work spans mmWave radar, Unity AR Foundation, markerless motion capture, and spiking neural models — with publications across neuroscience and computer science.</p>
+    <div class="hero-cta">
+      <a href="mailto:odoroshenko@nyit.edu" class="btn-primary">Get in touch</a>
+      <a href="https://linkedin.com" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="photo-frame">
+      <div class="photo-corner tl"></div>
+      <div class="photo-corner tr"></div>
+      <div class="photo-corner bl"></div>
+      <div class="photo-corner br"></div>
+      <div class="photo-inner">
+        <img src="photo.jpg" alt="Olena Doroshenko"
+          onerror="this.outerHTML='<div class=photo-placeholder-text>[ YOUR PHOTO ]<br><br>Upload photo.jpg<br>to GitHub repo</div>'">
+      </div>
+    </div>
+    <div class="photo-tag">// odoroshenko@nyit.edu</div>
+  </div>
+</div>
+
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-list">
+    <div class="edu-row">
+      <div class="edu-year">2024 — 2026</div>
+      <div class="edu-degree">M.S. Computer Science</div>
+      <div class="edu-school">New York Institute of Technology (NYIT) · New York, USA</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2022 — 2024</div>
+      <div class="edu-degree">B.S. Mathematics</div>
+      <div class="edu-school">West Virginia University (WVU) · Eberly College of Arts &amp; Sciences</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2025</div>
+      <div class="edu-degree">M.S. Electronics, Automation &amp; Telecommunications</div>
+      <div class="edu-school">Kyiv Aviation Institute · Computer-Integrated Technologies &amp; Robotics</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2020 — 2022</div>
+      <div class="edu-degree">B.S. Applied Mathematics (transferred)</div>
+      <div class="edu-school">Igor Sikorsky Kyiv Polytechnic Institute (KPI) · Transferred to WVU due to war in Ukraine</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-year">2021 — 2024</div>
+      <div class="edu-degree">B.S. Mathematics (part-time / online)</div>
+      <div class="edu-school">Taras Shevchenko National University of Kyiv (KNU)</div>
+    </div>
+  </div>
+</section>
+
+<div id="projects">
+  <div class="projects-header">
+    <div class="projects-big-label">Selected work</div>
+    <div class="projects-big-title">Projects</div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card" onmouseenter="openModal('p1')" onclick="openModal('p1')">
+      <div class="project-img">
+        <img src="IMAGE 2026-04-27 19:33:18.jpg" alt="mmWave AR Unity scene"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-img-placeholder" style="display:none">
+          <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="project-img-hint">upload IMAGE 2026-04-27 19:33:18.jpg</div>
+        </div>
+        <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
+      </div>
+      <div class="project-info">
+        <div class="project-num">01 / MS Capstone · NYIT · 2026</div>
+        <div class="project-name">mmWave AR "X-Ray Vision" System</div>
+        <div class="project-blurb">60 GHz radar + ARKit: detecting hidden objects and rendering them as holograms on iPhone in real time.</div>
+        <div class="project-tags"><span class="ptag">Unity</span><span class="ptag">ARKit</span><span class="ptag">MATLAB</span><span class="ptag">KNN</span><span class="ptag">Blender</span><span class="ptag">iOS</span></div>
+      </div>
+    </div>
+
+    <div class="project-card" onmouseenter="openModal('p2')" onclick="openModal('p2')">
+      <div class="project-img">
+        <img src="ODoroshenko_Poster_SURE_compressed.pdf" alt="Infant Motion"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-img-placeholder" style="display:none">
+          <div class="project-img-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+          <div class="project-img-hint">upload sure_poster.jpg</div>
+        </div>
+        <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
+      </div>
+      <div class="project-info">
+        <div class="project-num">02 / WVU Neural Engineering Lab · 2023–2024</div>
+        <div class="project-name">AI Infant Movement Diagnostic Tool</div>
+        <div class="project-blurb">Markerless 3D motion capture from smartphone video for early cerebral palsy screening.</div>
+        <div class="project-tags"><span class="ptag">Python</span><span class="ptag">DeepLabCut</span><span class="ptag">CNN</span><span class="ptag">MATLAB</span><span class="ptag">Biomechanics</span></div>
+      </div>
+    </div>
+
+    <div class="project-card" onmouseenter="openModal('p3')" onclick="openModal('p3')">
+      <div class="project-img">
+        <div class="project-img-placeholder">
+          <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div class="project-img-hint">upload project3.jpg</div>
+        </div>
+        <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
+      </div>
+      <div class="project-info">
+        <div class="project-num">03 / WVU Neural Engineering Lab · 2024</div>
+        <div class="project-name">Spiking Neural Network for Arm Motor Control</div>
+        <div class="project-blurb">A computational brain model of inverse dynamics — foundation for physics-based avatar motion in XR.</div>
+        <div class="project-tags"><span class="ptag">MATLAB</span><span class="ptag">Izhikevich</span><span class="ptag">Neuroscience</span><span class="ptag">Inverse dynamics</span></div>
+      </div>
+    </div>
+
+    <div class="project-card" onmouseenter="openModal('p4')" onclick="openModal('p4')">
+      <div class="project-img">
+        <img src="P_Capstone.pdf" alt="Pathfinding"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-img-placeholder" style="display:none">
+          <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM12 8v8M8 12h8"/></svg></div>
+          <div class="project-img-hint">upload capstone_poster.jpg</div>
+        </div>
+        <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
+      </div>
+      <div class="project-info">
+        <div class="project-num">04 / WVU Mathematics · bioRxiv · 2024</div>
+        <div class="project-name">Pathfinding Algorithm Benchmark</div>
+        <div class="project-blurb">Head-to-head comparison of GA, PSO, and SQP on nonlinear 3D terrain — published sole-author study.</div>
+        <div class="project-tags"><span class="ptag">MATLAB</span><span class="ptag">GA</span><span class="ptag">PSO</span><span class="ptag">SQP</span><span class="ptag">ANOVA</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="contact">
+  <div class="contact-section">
+    <div class="contact-label">Get in touch</div>
+    <div class="contact-title">Let's work together</div>
+    <p class="contact-sub">Open to junior XR Developer, AR Engineer, and Immersive Systems roles. Graduating May 2026. Based in New York — open to relocate.</p>
+    <div class="contact-links">
+      <a href="mailto:odoroshenko@nyit.edu" class="btn-primary">odoroshenko@nyit.edu</a>
+      <a href="https://linkedin.com" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 Olena Doroshenko &nbsp;·&nbsp; XR Developer &amp; Researcher &nbsp;·&nbsp; New York, NY</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-close"><button class="close-btn" onclick="closeModal()">✕ close</button></div>
+    <div class="modal-body" id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  p1: {
+    meta: 'Project 01 · MS Capstone · NYIT · 2026 · Full-stack solo build',
+    title: 'Augmented Reality Visualization of Hidden Objects Using mmWave Radar and Mobile Displays',
+    subtitle: 'A real-time system that uses 60 GHz radar to detect objects hidden behind walls — then renders a holographic 3D model of that object in augmented reality on an iPhone. No markers. No QR codes. Just radar, Wi-Fi, and the phone.',
+    mediaHTML: `
+      <div class="modal-img-grid">
+        <img src="IMAGE 2026-04-27 19:33:18.jpg" alt="Unity AR scene"
+          onerror="this.closest('.modal-img-grid').innerHTML='<div class=modal-media><div class=media-hint>Upload IMAGE 2026-04-27 19:33:18.jpg to GitHub</div></div>'">
+        <div class="img-stack">
+          <img src="BlenderBottle.png" alt="Blender bottle"
+            onerror="this.style.background='#141828'">
+          <img src="blenderpowerbank.png" alt="Blender power bank"
+            onerror="this.style.background='#141828'">
+        </div>
+      </div>`,
+    stats: [
+      {num:'93.3%', label:'Classification accuracy'},
+      {num:'0.980', label:'AUC (both classes)'},
+      {num:'10,634', label:'Radar frames collected'},
+    ],
+    about: [
+      'Complete end-to-end system integrating 60 GHz mmWave FMCW radar with a Unity-based AR application on iPhone',
+      'The TI IWR6843AOP radar penetrates cardboard barriers to detect concealed objects and generate 3D point clouds',
+      'A weighted KNN classifier (k=10, squared-inverse distance weighting) achieves 93.32% accuracy on two object classes',
+      'A dual-voting reliability mechanism (score aggregation + majority vote) ensures robust real-time classification',
+      'Blender 4.2 3D models of glass bottles and power banks overlaid in AR via Apple ARKit and Unity AR Foundation',
+      'Classification results stream to iPhone over TCP/Wi-Fi with sub-50 ms latency after a 10-second radar scan cycle',
+      'When a user taps a rendered AR model on iPhone, a heads-up display shows the estimated distance and classification confidence score in real time',
+      'Feature vector: bounding box extents, centroid coordinates, standard deviations, and point density (10 dimensions)',
+    ],
+    why: "Most AR developers work from camera or LiDAR. This project fuses RF radar with ARKit's pose tracking, requiring deep understanding of both signal processing and AR rendering pipelines. Validated across 8 real-world object specimens (4 bottle variants, 4 electronic devices), demonstrating ML rigor beyond toy demos.",
+    outcomes: [
+      {label:'Published paper', detail:'NYIT Department of Computer Science, 2026', link:'', linkText:''},
+      {label:'Cross-device validation', detail:'iPhone 14 and iPhone 17 — two ARKit generations', link:'', linkText:''},
+      {label:'Sub-50 ms TCP latency', detail:'for AR rendering after classification', link:'', linkText:''},
+      {label:'10.5 sec end-to-end detection cycle', detail:'dominated by radar acquisition window, not compute', link:'', linkText:''},
+      {label:'93.32% test accuracy', detail:'AUC = 0.980 for both object classes', link:'', linkText:''},
+    ],
+    tags:['Unity 6.4','AR Foundation 6.x','ARKit','C#','TI IWR6843AOP','MATLAB','KNN','Blender 4.2','TCP networking','iOS 17+'],
+  },
+
+  p2: {
+    meta: 'Project 02 · WVU Neural Engineering Lab · SURE 2023 + RAP 2023–2024 · First author',
+    title: 'Markerless Spatial Motion Capture: A Novel Approach for Diagnosing Infant Movement Pathologies',
+    subtitle: 'A computer vision pipeline that turns any smartphone video of a moving infant into clinically meaningful 3D motion analysis — making early screening for cerebral palsy accessible anywhere, using only a phone.',
+    mediaHTML: `
+      <div style="margin-bottom:1.75rem;">
+        <div class="poster-label">Research poster — SURE 2023</div>
+        <img class="poster-img" src="sure_poster.jpg" alt="SURE 2023 poster"
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your SURE poster from Google Slides as sure_poster.jpg<br>and upload to GitHub repo</div></div>'">
+      </div>`,
+    stats: [
+      {num:'2D→3D', label:'Coordinate lifting'},
+      {num:'2023–24', label:'Research programs'},
+      {num:'Poster', label:'Co-authored 2024'},
+    ],
+    about: [
+      'Deep convolutional networks trained in DeepLabCut extract 2D joint positions from standard smartphone video',
+      'A depth-estimation network (MiDaS DPT_Hybrid) lifts 2D pixel coordinates into full 3D Cartesian joint positions',
+      'Resnet-50 trained for 100,000 iterations on 100 hand-labeled frames — tracking errors did not exceed 5 pixels',
+      'Scaled biomechanical body models of infants (22 body parts, segment lengths, joint constraints) built in MATLAB Simulink',
+      'Full pipeline: smartphone video → 2D pose estimation → 3D kinematic reconstruction → neck-trunk angle measurement',
+      'Tested three MiDaS architectures; DPT_Hybrid selected for best accuracy-speed tradeoff (&lt;1 sec per frame)',
+      'Initial case study (pre-term vs full-term infant) expanded to population-level cohort through WVU RAP program (Fall 2023)',
+      'Co-authored poster on AI-powered postural control assessment in preterm infants, 2024',
+    ],
+    why: 'Markerless pose estimation from monocular camera feeds is the core computer vision problem in body-tracking XR — what Meta, Apple, and every major spatial computing platform is investing in. This project demonstrates the full stack from video input to 3D reconstruction, with clinical validation on a real patient population.',
+    outcomes: [
+      {label:'First-author abstract — SURE Symposium 2023', detail:'Spatial markerless motion capture for diagnosing movement pathologies in infants', link:'', linkText:''},
+      {label:'Co-author poster, 2024', detail:'Beyond Traditional Methods: An AI-Powered Paradigm for Assessing Postural Control during Prone Play in Infants', link:'https://www.researchgate.net/publication/379181853_Beyond_Traditional_Methods_An_AI-Powered_Paradigm_for_Assessing_Postural_Control_during_Prone_Play_in_Infants', linkText:'View on ResearchGate ↗'},
+    ],
+    tags:['Python','DeepLabCut','MiDaS','Deep CNNs','MATLAB Simulink','Biomechanical modeling','2D→3D lifting','Markerless pose estimation'],
+  },
+
+  p3: {
+    meta: 'Project 03 · WVU Neural Engineering Lab · 2024 · First author',
+    title: 'Neuronal Population Coding for the Inverse Dynamics of a Planar Human Arm Model',
+    subtitle: 'A biologically faithful simulation of how the brain computes muscle forces during arm movement — the scientific foundation behind procedural animation, physics-based avatar control, and next-generation motion synthesis for XR.',
+    mediaHTML: `
+      <div class="modal-media">
+        <div class="media-hint">Upload project3.jpg to GitHub repo<br>then replace src in the code</div>
+      </div>`,
+    stats: [
+      {num:'Izhikevich', label:'Spiking neuron model'},
+      {num:'2-joint', label:'Planar arm model'},
+      {num:'2024', label:'Van Liere Conference'},
+    ],
+    about: [
+      'Implements the Izhikevich spiking neuron model with biologically realistic spike dynamics (not simplified rate-coded approximations)',
+      'A neuronal population ensemble encodes motor commands as distributed activity across the neuron population',
+      'The inverse dynamics problem formulated for a planar 2-joint arm model across a set of reaching trajectories',
+      'Linear algebra-based population decoding extracts joint torques from neural firing patterns',
+      'Model output validated against analytic inverse dynamics ground-truth solutions',
+    ],
+    why: 'Inverse dynamics is the core problem in physics-based animation and avatar motor control. Understanding how biological systems solve it gives a distinct edge designing realistic XR avatar movement, procedural motion systems, and brain-computer interface applications.',
+    outcomes: [
+      {label:'First-author abstract', detail:'WVU Van Liere Research Conference, 2024', link:'', linkText:''},
+      {label:'Presented to faculty and graduate researchers', detail:'WVU School of Medicine, Rockefeller Neuroscience Institute', link:'', linkText:''},
+    ],
+    tags:['MATLAB','Python','Izhikevich neuron model','Population coding','Inverse dynamics','Linear algebra','Computational neuroscience'],
+  },
+
+  p4: {
+    meta: 'Project 04 · WVU Mathematics Capstone · Published on bioRxiv · Sole author',
+    title: 'Evaluating Evolutionary and Gradient-Based Algorithms for Optimal Pathfinding',
+    subtitle: 'A rigorous head-to-head benchmark of three pathfinding algorithms — GA, PSO, and SQP — on a complex nonlinear 3D terrain. 20 simulations each. Statistical testing via ANOVA. SQP wins on both cost and speed.',
+    mediaHTML: `
+      <div style="margin-bottom:1.75rem;">
+        <div class="poster-label">Conference poster — WVU</div>
+        <img class="poster-img" src="capstone_poster.jpg" alt="WVU Capstone poster"
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your capstone poster from Google Slides as capstone_poster.jpg<br>and upload to GitHub repo</div></div>'">
+      </div>`,
+    stats: [
+      {num:'60', label:'Total simulation runs'},
+      {num:'SQP', label:'Winner: cost + speed'},
+      {num:'p&lt;0.01', label:'ANOVA significance'},
+    ],
+    about: [
+      'Nonlinear 3D test environment designed as a linear combination of scaled Gaussian surfaces (MATLAB peaks function)',
+      'Custom cost function penalizes both terrain height traversal and total path length simultaneously',
+      'Genetic Algorithm: population 100, 100 generations, crossover fraction 0.8, Gaussian mutation',
+      'Particle Swarm Optimization: 100 particles, 95 iterations, cognitive + social velocity update rule',
+      'Sequential Quadratic Programming: fmincon with white-noise-perturbed initialization to escape local minima',
+      'All three algorithms matched at ~9,600 function evaluations for a fair comparison',
+      'Kolmogorov-Smirnov normality tests and one-way ANOVA (α = 0.05) applied to all performance distributions',
+    ],
+    why: 'Navigation and pathfinding are core to spatial computing: AR wayfinding, autonomous agents in virtual environments, drone guidance, and scene traversal all depend on choosing the right algorithm. This study demonstrates not just implementation ability but the statistical rigor to evaluate and compare algorithms.',
+    outcomes: [
+      {label:'Published on bioRxiv', detail:'Sole author', link:'https://www.biorxiv.org/content/10.1101/2025.03.16.643541v1.full', linkText:'View paper ↗'},
+      {label:'SQP achieved lowest path costs', detail:'STD = 0.12 a.u. vs. 1.94 (GA) and 0.90 (PSO)', link:'', linkText:''},
+      {label:'SQP was the fastest algorithm', detail:'PSO slowest despite identical evaluation budgets', link:'', linkText:''},
+      {label:'All performance differences significant', detail:'p &lt; 0.01 (one-way ANOVA)', link:'', linkText:''},
+    ],
+    tags:['MATLAB','Genetic Algorithm','Particle Swarm Optimization','Sequential Quadratic Programming','Nonlinear optimization','ANOVA','KS test','bioRxiv'],
+  },
+};
+
+function buildModal(id) {
+  const p = projects[id];
+  const statsHTML = p.stats.map(s=>`<div class="mstat"><div class="mstat-num">${s.num}</div><div class="mstat-label">${s.label}</div></div>`).join('');
+  const aboutHTML = p.about.map(b=>`<div class="mbullet">${b}</div>`).join('');
+  const outHTML = p.outcomes.map(o=>`
+    <div class="moutcome">
+      <div class="mout-dot"></div>
+      <div>
+        <div class="mout-label">${o.label}${o.link ? ` &nbsp;<a class="mout-link" href="${o.link}" target="_blank" rel="noopener">${o.linkText}</a>` : ''}</div>
+        <div class="mout-detail">${o.detail}</div>
+      </div>
+    </div>`).join('');
+  const tagsHTML = p.tags.map(t=>`<span class="mtag">${t}</span>`).join('');
+  return `
+    <div class="modal-meta">${p.meta}</div>
+    <div class="modal-title">${p.title}</div>
+    <div class="modal-subtitle">${p.subtitle}</div>
+    ${p.mediaHTML}
+    <div class="modal-stats">${statsHTML}</div>
+    <div class="modal-section-title">About the project</div>
+    <div class="modal-bullets">${aboutHTML}</div>
+    <div class="modal-section-title">Why it matters</div>
+    <div class="modal-callout">${p.why}</div>
+    <div class="modal-section-title">Results &amp; outcomes</div>
+    <div class="modal-outcomes">${outHTML}</div>
+    <div class="modal-tags">${tagsHTML}</div>`;
+}
+
+let currentModal = null;
+function openModal(id) {
+  if (currentModal === id) return;
+  currentModal = id;
+  document.getElementById('modalContent').innerHTML = buildModal(id);
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  currentModal = null;
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
