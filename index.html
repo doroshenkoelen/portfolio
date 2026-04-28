@@ -55,6 +55,7 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
 .section-title { font-family: var(--display); font-size: 2rem; font-weight: 600; color: var(--white); margin-bottom: 2.5rem; letter-spacing: -0.01em; }
 
+/* EDUCATION */
 .edu-list { display: flex; flex-direction: column; gap: 0.75rem; }
 .edu-row { display: grid; grid-template-columns: 130px 1fr 1fr; align-items: center; gap: 1.5rem; background: var(--navy2); border: 0.5px solid var(--rule); border-left: 2px solid transparent; border-radius: 6px; padding: 1rem 1.5rem; transition: border-color 0.2s, border-left-color 0.2s; }
 .edu-row:hover { border-color: rgba(0,212,255,0.25); border-left-color: var(--cyan); }
@@ -62,11 +63,36 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .edu-degree { font-size: 13.5px; font-weight: 500; color: var(--white); line-height: 1.4; }
 .edu-school { font-size: 12px; color: var(--muted); line-height: 1.5; text-align: right; }
 
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.skill-group { background: var(--navy2); border: 0.5px solid var(--rule); border-radius: 6px; padding: 1.25rem 1.5rem; }
+.skill-group-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag { font-size: 12px; padding: 3px 10px; border: 0.5px solid var(--rule); border-radius: 3px; color: var(--off); background: var(--navy3); }
+
+/* RESEARCH EXPERIENCE */
+.research-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.research-card { background: var(--navy2); border: 0.5px solid var(--rule); border-left: 2px solid var(--cyan); border-radius: 0 6px 6px 0; padding: 1.25rem 1.5rem; }
+.research-year { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+.research-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+.research-sub { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+/* PUBLICATIONS */
+.pub-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.pub-card { background: var(--navy2); border: 0.5px solid var(--rule); border-radius: 6px; padding: 1.1rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color 0.2s; }
+.pub-card:hover { border-color: rgba(0,212,255,0.3); }
+.pub-num { font-family: var(--mono); font-size: 10px; color: var(--cyan); flex-shrink: 0; margin-top: 2px; letter-spacing: 0.08em; }
+.pub-content {}
+.pub-title { font-size: 13.5px; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; line-height: 1.4; }
+.pub-detail { font-size: 12px; color: var(--muted); }
+.pub-link { font-size: 11px; color: var(--cyan); text-decoration: none; margin-left: 8px; font-family: var(--mono); }
+.pub-link:hover { text-decoration: underline; }
+
+/* PROJECTS */
 .projects-header { padding: 3rem 3rem 0; max-width: 1100px; margin: 0 auto; }
 .projects-big-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
 .projects-big-label::after { content: ''; flex: 1; height: 0.5px; background: var(--rule); }
 .projects-big-title { font-family: var(--display); font-size: 3.5rem; font-weight: 700; color: var(--white); margin-bottom: 2.5rem; letter-spacing: -0.03em; line-height: 1; }
-
 .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding: 0 3rem 5rem; max-width: 1100px; margin: 0 auto; }
 .project-card { background: var(--navy2); border: 0.5px solid var(--rule); border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; transition: border-color 0.25s, transform 0.25s; }
 .project-card:hover { border-color: rgba(0,212,255,0.4); transform: translateY(-3px); }
@@ -87,6 +113,7 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .ptag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; border: 0.5px solid var(--rule); border-radius: 2px; color: var(--muted); letter-spacing: 0.06em; }
 
+/* MODAL */
 .modal-overlay { position: fixed; inset: 0; background: rgba(7,9,15,0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
 .modal-overlay.active { opacity: 1; pointer-events: all; }
 .modal { background: var(--navy2); border: 0.5px solid rgba(0,212,255,0.25); border-radius: 10px; width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto; position: relative; transform: translateY(30px) scale(0.96); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
@@ -108,7 +135,8 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .modal-blender-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; border: 0.5px solid var(--rule); display: block; }
 .modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
-.modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
+.modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1rem; }
+.modal-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
 .mstat { background: var(--navy); border: 0.5px solid var(--rule); border-radius: 5px; padding: 0.9rem 1rem; text-align: center; }
 .mstat-num { font-family: var(--mono); font-size: 1.4rem; color: var(--cyan); margin-bottom: 0.3rem; }
 .mstat-label { font-size: 11px; color: var(--muted); }
@@ -159,6 +187,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   .modal-blender-grid { grid-template-columns: 1fr; }
   .modal-body { padding: 1.25rem 1.25rem 2rem; }
   .projects-big-title { font-size: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -170,6 +199,9 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
     <li><a href="#about">About</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -178,7 +210,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   <div class="hero-text">
     <h1 class="name">Olena<br><span>Doroshenko</span></h1>
     <p class="hero-title">M.S. Computer Science · NYIT · 2026</p>
-    <p class="hero-bio">I build AR systems that see what cameras can't. My work spans mmWave radar, Unity AR Foundation, markerless motion capture, and spiking neural models — with publications across neuroscience and computer science.</p>
+    <p class="hero-bio">M.S. Computer Science, May 2026. My background is mathematics and neuroscience research. Through my graduate work I developed practical experience in AR development — from radar-based sensing to Unity AR apps.</p>
     <div class="hero-cta">
       <a href="mailto:doroshenkoelen@gmail.com" class="btn-primary">Email</a>
       <a href="https://www.linkedin.com/in/olena-doroshenko-045a313b0/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
@@ -199,6 +231,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   </div>
 </div>
 
+<!-- EDUCATION -->
 <section id="education">
   <div class="section-label">Education</div>
   <h2 class="section-title">Academic Background</h2>
@@ -231,6 +264,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   </div>
 </section>
 
+<!-- PROJECTS -->
 <div id="projects">
   <div class="projects-header">
     <div class="projects-big-label">Selected work</div>
@@ -312,6 +346,140 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   </div>
 </div>
 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">AR / XR</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Unity 6.4</span>
+        <span class="skill-tag">AR Foundation</span>
+        <span class="skill-tag">ARKit</span>
+        <span class="skill-tag">iOS deployment</span>
+        <span class="skill-tag">TCP networking</span>
+        <span class="skill-tag">World-space UI</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">3D &amp; Design</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Blender 4.2</span>
+        <span class="skill-tag">Subdivision modeling</span>
+        <span class="skill-tag">PBR shaders</span>
+        <span class="skill-tag">URP / FBX export</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">ML / Computer Vision</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Deep CNNs</span>
+        <span class="skill-tag">DeepLabCut</span>
+        <span class="skill-tag">KNN classifier</span>
+        <span class="skill-tag">Point cloud processing</span>
+        <span class="skill-tag">2D→3D lifting</span>
+        <span class="skill-tag">Feature engineering</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Sensing &amp; Hardware</div>
+      <div class="skill-tags">
+        <span class="skill-tag">TI IWR6843AOP radar</span>
+        <span class="skill-tag">mmWave FMCW</span>
+        <span class="skill-tag">mmWave Studio</span>
+        <span class="skill-tag">Point cloud acquisition</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Research &amp; Analysis</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Biomechanical modeling</span>
+        <span class="skill-tag">MATLAB Simulink</span>
+        <span class="skill-tag">ANOVA / KS test</span>
+        <span class="skill-tag">Statistical analysis</span>
+        <span class="skill-tag">Computational neuroscience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH EXPERIENCE -->
+<section id="research">
+  <div class="section-label">Research Experience</div>
+  <h2 class="section-title">Research Experience</h2>
+  <div class="research-list">
+    <div class="research-card">
+      <div class="research-year">Summer 2023</div>
+      <div class="research-title">Summer Undergraduate Research Experience (SURE)</div>
+      <div class="research-sub">West Virginia University · Neural Engineering &amp; Rehabilitation Lab · Advisor: Dr. Valeriya Gritsenko<br>Intensive research training in biomechanics and motion capture. Built a markerless infant motion analysis pipeline using deep convolutional networks. Presented first-author abstract at the WVU SURE Symposium.</div>
+    </div>
+    <div class="research-card">
+      <div class="research-year">Fall 2023 — Spring 2024</div>
+      <div class="research-title">Research Apprenticeship Program (RAP)</div>
+      <div class="research-sub">West Virginia University · Neural Engineering Lab · Advisor: Serhii Bahdasariants<br>Competitive undergraduate research program. Expanded initial SURE case study to a population-level cohort, validating statistical significance of findings. Also developed neuronal population coding models for inverse dynamics of a planar human arm.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-label">Publications</div>
+  <h2 class="section-title">Publications &amp; Presentations</h2>
+  <div class="pub-list">
+    <div class="pub-card">
+      <div class="pub-num">01</div>
+      <div class="pub-content">
+        <div class="pub-title">Augmented Reality Visualization of Hidden Objects Using mmWave Radar and Mobile Displays</div>
+        <div class="pub-detail">Olena Doroshenko · NYIT Department of Computer Science · 2026</div>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">02</div>
+      <div class="pub-content">
+        <div class="pub-title">Evaluating Evolutionary and Gradient-Based Algorithms for Optimal Pathfinding</div>
+        <div class="pub-detail">Olena Doroshenko, Serhii Bahdasariants, Marjorie Darrah · West Virginia University · bioRxiv 2025
+          <a class="pub-link" href="https://www.biorxiv.org/content/10.1101/2025.03.16.643541v1.full" target="_blank" rel="noopener">View paper ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">03</div>
+      <div class="pub-content">
+        <div class="pub-title">Markerless Spatial Motion Capture: A Novel Approach for Diagnosing Infant Movement Pathologies</div>
+        <div class="pub-detail">Olena Doroshenko, Serhii Bahdasariants, Valeriya Gritsenko · WVU SURE Symposium · 2023 · First-author abstract</div>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">04</div>
+      <div class="pub-content">
+        <div class="pub-title">Beyond Traditional Methods: An AI-Powered Paradigm for Assessing Postural Control during Prone Play in Infants</div>
+        <div class="pub-detail">Co-author · West Virginia University · 2024
+          <a class="pub-link" href="https://www.researchgate.net/publication/379181853_Beyond_Traditional_Methods_An_AI-Powered_Paradigm_for_Assessing_Postural_Control_during_Prone_Play_in_Infants" target="_blank" rel="noopener">View on ResearchGate ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">05</div>
+      <div class="pub-content">
+        <div class="pub-title">Neuronal Population Coding for the Inverse Dynamics of a Planar Human Arm Model</div>
+        <div class="pub-detail">Olena Doroshenko, Serhii Bahdasariants · WVU Van Liere Research Conference · 2024 · First-author abstract</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <div id="contact">
   <div class="contact-section">
     <div class="contact-label">Get in touch</div>
@@ -353,6 +521,7 @@ const projects = {
       {num:'0.980', label:'AUC (both classes)'},
       {num:'10,634', label:'Radar frames collected'},
     ],
+    statsExtra: null,
     about: [
       'Complete end-to-end system integrating 60 GHz mmWave FMCW radar with a Unity-based AR application on iPhone',
       'The TI IWR6843AOP radar penetrates cardboard barriers to detect concealed objects and generate 3D point clouds',
@@ -388,9 +557,10 @@ const projects = {
     blenderHTML: null,
     stats: [
       {num:'2D→3D', label:'Coordinate lifting'},
-      {num:'2023–24', label:'Research programs'},
+      {num:'Research experience', label:'2023–2024'},
       {num:'Poster', label:'Co-authored 2024'},
     ],
+    statsExtra: null,
     about: [
       'Deep convolutional networks trained in DeepLabCut extract 2D joint positions from standard smartphone video',
       'A depth-estimation network (MiDaS DPT_Hybrid) lifts 2D pixel coordinates into full 3D Cartesian joint positions',
@@ -417,10 +587,11 @@ const projects = {
     posterHTML: null,
     blenderHTML: null,
     stats: [
-      {num:'Izhikevich', label:'Spiking neuron model'},
+      {num:'Spiking neuron model', label:'Izhikevich dynamics'},
       {num:'2-joint', label:'Planar arm model'},
       {num:'2024', label:'Van Liere Conference'},
     ],
+    statsExtra: null,
     about: [
       'Implements the Izhikevich spiking neuron model with biologically realistic spike dynamics (not simplified rate-coded approximations)',
       'A neuronal population ensemble encodes motor commands as distributed activity across the neuron population',
@@ -448,6 +619,11 @@ const projects = {
           onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload capstone_poster.jpg to GitHub (must be a real JPEG, not a renamed PDF)</div></div>'">
       </div>`,
     blenderHTML: null,
+    statsExtra: [
+      {num:'Genetic Algorithm', label:'Evolutionary · population-based'},
+      {num:'Particle Swarm', label:'Evolutionary · swarm-based'},
+      {num:'SQP', label:'Gradient-based · deterministic'},
+    ],
     stats: [
       {num:'60', label:'Total simulation runs'},
       {num:'SQP', label:'Winner: cost + speed'},
@@ -476,6 +652,7 @@ const projects = {
 function buildModal(id) {
   const p = projects[id];
   const statsHTML = p.stats.map(s=>`<div class="mstat"><div class="mstat-num">${s.num}</div><div class="mstat-label">${s.label}</div></div>`).join('');
+  const statsExtraHTML = p.statsExtra ? p.statsExtra.map(s=>`<div class="mstat"><div class="mstat-num" style="font-size:1rem;">${s.num}</div><div class="mstat-label">${s.label}</div></div>`).join('') : '';
   const aboutHTML = p.about.map(b=>`<div class="mbullet">${b}</div>`).join('');
   const outHTML = p.outcomes.map(o=>`
     <div class="moutcome">
@@ -491,6 +668,7 @@ function buildModal(id) {
     <div class="modal-title">${p.title}</div>
     <div class="modal-subtitle">${p.subtitle}</div>
     ${p.mediaHTML || ''}
+    ${statsExtraHTML ? `<div class="modal-stats-row">${statsExtraHTML}</div>` : ''}
     <div class="modal-stats">${statsHTML}</div>
     <div class="modal-section-title">About the project</div>
     <div class="modal-bullets">${aboutHTML}</div>
