@@ -101,46 +101,11 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .modal-meta { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
 .modal-title { font-family: var(--display); font-size: 1.65rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; line-height: 1.25; }
 .modal-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.7; padding-top: 0.25rem; }
-
-/* Full poster — natural height, full width */
 .poster-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
-.poster-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-  border: 0.5px solid var(--rule);
-  margin-bottom: 1.75rem;
-}
-
-/* P1 top image — Unity scene */
-.modal-hero-img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 0.5px solid var(--rule);
-  display: block;
-  margin-bottom: 1.75rem;
-}
-
-/* P1 bottom images — Blender models after About */
-.modal-blender-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-.modal-blender-grid img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 5px;
-  border: 0.5px solid var(--rule);
-  display: block;
-}
-
+.poster-img { width: 100%; height: auto; display: block; border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; }
+.modal-hero-img { width: 100%; height: 280px; object-fit: cover; border-radius: 6px; border: 0.5px solid var(--rule); display: block; margin-bottom: 1.75rem; }
+.modal-blender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.modal-blender-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; border: 0.5px solid var(--rule); display: block; }
 .modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
 .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
@@ -310,7 +275,9 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
 
     <div class="project-card" onmouseenter="scheduleModal('p3')" onmouseleave="cancelModal()" onclick="openModal('p3')">
       <div class="project-img">
-        <div class="project-img-placeholder">
+        <img src="project3.jpg" alt="Neural model visualization"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-img-placeholder" style="display:none">
           <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <div class="project-img-hint">upload project3.jpg</div>
         </div>
@@ -373,16 +340,13 @@ const projects = {
     meta: 'Project 01 · MS Capstone · NYIT · 2026 · Full-stack solo build',
     title: 'Augmented Reality Visualization of Hidden Objects Using mmWave Radar and Mobile Displays',
     subtitle: 'A real-time system that uses 60 GHz radar to detect objects hidden behind walls — then renders a holographic 3D model of that object in augmented reality on an iPhone. No markers. No QR codes. Just radar, Wi-Fi, and the phone.',
-    mediaHTML: `
-      <img class="modal-hero-img" src="IMAGE 2026-04-27 19:33:18.jpg" alt="Unity AR scene"
-        onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload IMAGE 2026-04-27 19:33:18.jpg to GitHub</div></div>'">`,
+    mediaHTML: `<img class="modal-hero-img" src="IMAGE 2026-04-27 19:33:18.jpg" alt="Unity AR scene" onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload IMAGE 2026-04-27 19:33:18.jpg to GitHub</div></div>'">`,
+    posterHTML: null,
     blenderHTML: `
       <div class="modal-section-title">3D Models — Blender 4.2</div>
       <div class="modal-blender-grid">
-        <img src="BlenderBottle.png" alt="Blender glass bottle model"
-          onerror="this.style.background='#141828';this.alt='Upload BlenderBottle.png'">
-        <img src="blenderpowerbank.png" alt="Blender power bank model"
-          onerror="this.style.background='#141828';this.alt='Upload blenderpowerbank.png'">
+        <img src="BlenderBottle.png" alt="Blender glass bottle model" onerror="this.style.background='#141828'">
+        <img src="blenderpowerbank.png" alt="Blender power bank model" onerror="this.style.background='#141828'">
       </div>`,
     stats: [
       {num:'93.3%', label:'Classification accuracy'},
@@ -409,16 +373,19 @@ const projects = {
     ],
     tags:['Unity 6.4','AR Foundation 6.x','ARKit','C#','TI IWR6843AOP','MATLAB','KNN','Blender 4.2','TCP networking','iOS 17+'],
   },
+
   p2: {
     meta: 'Project 02 · WVU Neural Engineering Lab · SURE 2023 + RAP 2023–2024 · First author',
     title: 'Markerless Spatial Motion Capture: A Novel Approach for Diagnosing Infant Movement Pathologies',
     subtitle: 'A computer vision pipeline that turns any smartphone video of a moving infant into clinically meaningful 3D motion analysis — making early screening for cerebral palsy accessible anywhere, using only a phone.',
-    mediaHTML: `
-      <div style="margin-bottom:1.75rem;">
+    mediaHTML: null,
+    posterHTML: `
+      <div style="margin-top:1.5rem; margin-bottom:1.75rem;">
         <div class="poster-label">Research poster — SURE 2023</div>
         <img class="poster-img" src="sure_poster.jpg" alt="SURE 2023 poster"
-          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your SURE poster as sure_poster.jpg and upload to GitHub</div></div>'">
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload sure_poster.jpg to GitHub (must be a real JPEG image, not a renamed PDF)</div></div>'">
       </div>`,
+    blenderHTML: null,
     stats: [
       {num:'2D→3D', label:'Coordinate lifting'},
       {num:'2023–24', label:'Research programs'},
@@ -441,11 +408,17 @@ const projects = {
     ],
     tags:['Python','DeepLabCut','MiDaS','Deep CNNs','MATLAB Simulink','Biomechanical modeling','2D→3D lifting','Markerless pose estimation'],
   },
+
   p3: {
     meta: 'Project 03 · WVU Neural Engineering Lab · 2024 · First author',
     title: 'Neuronal Population Coding for the Inverse Dynamics of a Planar Human Arm Model',
     subtitle: 'A biologically faithful simulation of how the brain computes muscle forces during arm movement — the scientific foundation behind procedural animation, physics-based avatar control, and next-generation motion synthesis for XR.',
-    mediaHTML: `<div class="modal-media"><div class="media-hint">Upload project3.jpg to GitHub repo</div></div>`,
+    mediaHTML: `
+      <div class="modal-media">
+        <div class="media-hint">Upload project3.jpg to GitHub<br><span style="color:#333;font-size:10px;">Take a screenshot of the visualization below and save it as project3.jpg</span></div>
+      </div>`,
+    posterHTML: null,
+    blenderHTML: null,
     stats: [
       {num:'Izhikevich', label:'Spiking neuron model'},
       {num:'2-joint', label:'Planar arm model'},
@@ -465,16 +438,19 @@ const projects = {
     ],
     tags:['MATLAB','Python','Izhikevich neuron model','Population coding','Inverse dynamics','Linear algebra','Computational neuroscience'],
   },
+
   p4: {
     meta: 'Project 04 · WVU Mathematics Capstone · Published on bioRxiv · Sole author',
     title: 'Evaluating Evolutionary and Gradient-Based Algorithms for Optimal Pathfinding',
     subtitle: 'A rigorous head-to-head benchmark of three pathfinding algorithms — GA, PSO, and SQP — on a complex nonlinear 3D terrain. 20 simulations each. Statistical testing via ANOVA. SQP wins on both cost and speed.',
-    mediaHTML: `
-      <div style="margin-bottom:1.75rem;">
+    mediaHTML: null,
+    posterHTML: `
+      <div style="margin-top:1.5rem; margin-bottom:1.75rem;">
         <div class="poster-label">Conference poster — WVU</div>
         <img class="poster-img" src="capstone_poster.jpg" alt="WVU Capstone poster"
-          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your capstone poster as capstone_poster.jpg and upload to GitHub</div></div>'">
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload capstone_poster.jpg to GitHub (must be a real JPEG image, not a renamed PDF)</div></div>'">
       </div>`,
+    blenderHTML: null,
     stats: [
       {num:'60', label:'Total simulation runs'},
       {num:'SQP', label:'Winner: cost + speed'},
@@ -517,11 +493,12 @@ function buildModal(id) {
     <div class="modal-meta">${p.meta}</div>
     <div class="modal-title">${p.title}</div>
     <div class="modal-subtitle">${p.subtitle}</div>
-    ${p.mediaHTML}
+    ${p.mediaHTML || ''}
     <div class="modal-stats">${statsHTML}</div>
     <div class="modal-section-title">About the project</div>
     <div class="modal-bullets">${aboutHTML}</div>
     ${p.blenderHTML || ''}
+    ${p.posterHTML || ''}
     <div class="modal-section-title">Why it matters</div>
     <div class="modal-callout">${p.why}</div>
     <div class="modal-section-title">Results &amp; outcomes</div>
