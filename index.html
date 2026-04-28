@@ -124,13 +124,33 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .poster-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
 .poster-img { width: 100%; height: auto; display: block; border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; }
 
-/* Unity scene — crop sun icon at top, toolbar at bottom via object-position */
-.modal-hero-img { width: 100%; height: 360px; object-fit: cover; object-position: center 18%; border-radius: 6px; border: 0.5px solid var(--rule); display: block; margin-bottom: 1.75rem; }
+/* Unity scene: shift down slightly so sun is hidden, show more bottom */
+.modal-hero-img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: 6px;
+  border: 0.5px solid var(--rule);
+  display: block;
+  margin-bottom: 1.75rem;
+}
 
-/* Blender grid — bottle uses contain, powerbank uses cover to crop UI */
+/* Blender grid: taller so full objects show, powerbank crops UI via position */
 .modal-blender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-.modal-blender-grid img { width: 100%; height: 220px; object-fit: contain; background: #141828; border-radius: 5px; border: 0.5px solid var(--rule); display: block; }
-.modal-blender-grid img:last-child { object-fit: cover; object-position: center 42%; background: #141828; }
+.modal-blender-grid img {
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background: #141828;
+  border-radius: 5px;
+  border: 0.5px solid var(--rule);
+  display: block;
+}
+.modal-blender-grid img:last-child {
+  object-fit: cover;
+  object-position: center 38%;
+}
 
 .modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
