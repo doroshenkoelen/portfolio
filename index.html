@@ -28,8 +28,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; a
 
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 3rem 4rem; gap: 4rem; position: relative; overflow: hidden; }
 .hero::after { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%); pointer-events: none; }
-.hero-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--cyan); display: inline-block; }
 h1.name { font-family: var(--display); font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
 h1.name span { color: var(--cyan); }
 .hero-title { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 1.75rem; }
@@ -51,7 +49,6 @@ h1.name span { color: var(--cyan); }
 .photo-corner.tr { top: -8px; right: -8px; border-width: 2px 2px 0 0; }
 .photo-corner.bl { bottom: -8px; left: -8px; border-width: 0 0 2px 2px; }
 .photo-corner.br { bottom: -8px; right: -8px; border-width: 0 2px 2px 0; }
-.photo-tag { position: absolute; bottom: -1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; white-space: nowrap; }
 
 section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem; }
@@ -90,9 +87,9 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .ptag { font-family: var(--mono); font-size: 9px; padding: 2px 8px; border: 0.5px solid var(--rule); border-radius: 2px; color: var(--muted); letter-spacing: 0.06em; }
 
-.modal-overlay { position: fixed; inset: 0; background: rgba(7,9,15,0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(7,9,15,0.92); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
 .modal-overlay.active { opacity: 1; pointer-events: all; }
-.modal { background: var(--navy2); border: 0.5px solid rgba(0,212,255,0.25); border-radius: 10px; width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto; position: relative; transform: translateY(20px) scale(0.97); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+.modal { background: var(--navy2); border: 0.5px solid rgba(0,212,255,0.25); border-radius: 10px; width: 100%; max-width: 820px; max-height: 88vh; overflow-y: auto; position: relative; transform: translateY(30px) scale(0.96); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
 .modal-overlay.active .modal { transform: translateY(0) scale(1); }
 .modal::-webkit-scrollbar { width: 4px; }
 .modal::-webkit-scrollbar-track { background: var(--navy); }
@@ -104,15 +101,48 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 .modal-meta { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
 .modal-title { font-family: var(--display); font-size: 1.65rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; line-height: 1.25; }
 .modal-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.7; padding-top: 0.25rem; }
+
+/* Full poster — natural height, full width */
 .poster-label { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
-.poster-img { width: 100%; border-radius: 6px; border: 0.5px solid var(--rule); display: block; margin-bottom: 1.75rem; }
+.poster-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 0.5px solid var(--rule);
+  margin-bottom: 1.75rem;
+}
+
+/* P1 top image — Unity scene */
+.modal-hero-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 0.5px solid var(--rule);
+  display: block;
+  margin-bottom: 1.75rem;
+}
+
+/* P1 bottom images — Blender models after About */
+.modal-blender-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.modal-blender-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 0.5px solid var(--rule);
+  display: block;
+}
+
 .modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
-.modal-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.75rem; }
-.modal-img-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 5px; border: 0.5px solid var(--rule); display: block; }
-.modal-img-grid .img-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
-.modal-img-grid .img-stack img { height: 86px; }
 .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
 .mstat { background: var(--navy); border: 0.5px solid var(--rule); border-radius: 5px; padding: 0.9rem 1rem; text-align: center; }
 .mstat-num { font-family: var(--mono); font-size: 1.4rem; color: var(--cyan); margin-bottom: 0.3rem; }
@@ -148,7 +178,6 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
 .hero-text > *:nth-child(2) { animation-delay: 0.12s; }
 .hero-text > *:nth-child(3) { animation-delay: 0.18s; }
 .hero-text > *:nth-child(4) { animation-delay: 0.24s; }
-.hero-text > *:nth-child(5) { animation-delay: 0.3s; }
 .hero-photo { animation: fadeUp 0.8s 0.35s ease both; }
 
 @media (max-width: 768px) {
@@ -162,7 +191,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   .projects-grid { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
   .projects-header { padding: 3rem 1.5rem 0; }
   .modal-bullets { grid-template-columns: 1fr; }
-  .modal-img-grid { grid-template-columns: 1fr; }
+  .modal-blender-grid { grid-template-columns: 1fr; }
   .modal-body { padding: 1.25rem 1.25rem 2rem; }
   .projects-big-title { font-size: 2.5rem; }
 }
@@ -182,13 +211,13 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
 
 <div class="hero" id="about">
   <div class="hero-text">
-    <div class="hero-eyebrow">XR Developer &amp; Researcher</div>
     <h1 class="name">Olena<br><span>Doroshenko</span></h1>
     <p class="hero-title">M.S. Computer Science · NYIT · 2026</p>
     <p class="hero-bio">I build AR systems that see what cameras can't. My work spans mmWave radar, Unity AR Foundation, markerless motion capture, and spiking neural models — with publications across neuroscience and computer science.</p>
     <div class="hero-cta">
-      <a href="mailto:odoroshenko@nyit.edu" class="btn-primary">Get in touch</a>
-      <a href="https://linkedin.com" class="btn-secondary">LinkedIn ↗</a>
+      <a href="mailto:doroshenkoelen@gmail.com" class="btn-primary">Email</a>
+      <a href="https://www.linkedin.com/in/olena-doroshenko-045a313b0/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+      <a href="https://github.com/doroshenkoelen" target="_blank" rel="noopener" class="btn-secondary">GitHub ↗</a>
     </div>
   </div>
   <div class="hero-photo">
@@ -202,7 +231,6 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
           onerror="this.outerHTML='<div class=photo-placeholder-text>[ YOUR PHOTO ]<br><br>Upload photo.jpg<br>to GitHub repo</div>'">
       </div>
     </div>
-    <div class="photo-tag">// odoroshenko@nyit.edu</div>
   </div>
 </div>
 
@@ -245,13 +273,12 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   </div>
   <div class="projects-grid">
 
-    <div class="project-card" onmouseenter="openModal('p1')" onclick="openModal('p1')">
+    <div class="project-card" onmouseenter="scheduleModal('p1')" onmouseleave="cancelModal()" onclick="openModal('p1')">
       <div class="project-img">
         <img src="IMAGE 2026-04-27 19:33:18.jpg" alt="mmWave AR Unity scene"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-img-placeholder" style="display:none">
           <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-          <div class="project-img-hint">upload IMAGE 2026-04-27 19:33:18.jpg</div>
         </div>
         <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
       </div>
@@ -263,9 +290,9 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
       </div>
     </div>
 
-    <div class="project-card" onmouseenter="openModal('p2')" onclick="openModal('p2')">
+    <div class="project-card" onmouseenter="scheduleModal('p2')" onmouseleave="cancelModal()" onclick="openModal('p2')">
       <div class="project-img">
-        <img src="ODoroshenko_Poster_SURE_compressed.pdf" alt="Infant Motion"
+        <img src="sure_poster.jpg" alt="Infant Motion poster"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-img-placeholder" style="display:none">
           <div class="project-img-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
@@ -281,7 +308,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
       </div>
     </div>
 
-    <div class="project-card" onmouseenter="openModal('p3')" onclick="openModal('p3')">
+    <div class="project-card" onmouseenter="scheduleModal('p3')" onmouseleave="cancelModal()" onclick="openModal('p3')">
       <div class="project-img">
         <div class="project-img-placeholder">
           <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
@@ -297,9 +324,9 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
       </div>
     </div>
 
-    <div class="project-card" onmouseenter="openModal('p4')" onclick="openModal('p4')">
+    <div class="project-card" onmouseenter="scheduleModal('p4')" onmouseleave="cancelModal()" onclick="openModal('p4')">
       <div class="project-img">
-        <img src="P_Capstone.pdf" alt="Pathfinding"
+        <img src="capstone_poster.jpg" alt="Pathfinding poster"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="project-img-placeholder" style="display:none">
           <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM12 8v8M8 12h8"/></svg></div>
@@ -322,10 +349,11 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
   <div class="contact-section">
     <div class="contact-label">Get in touch</div>
     <div class="contact-title">Let's work together</div>
-    <p class="contact-sub">Open to junior XR Developer, AR Engineer, and Immersive Systems roles. Graduating May 2026. Based in New York — open to relocate.</p>
+    <p class="contact-sub">Graduating May 2026 · Based in New York · Open to relocate</p>
     <div class="contact-links">
-      <a href="mailto:odoroshenko@nyit.edu" class="btn-primary">odoroshenko@nyit.edu</a>
-      <a href="https://linkedin.com" class="btn-secondary">LinkedIn ↗</a>
+      <a href="mailto:doroshenkoelen@gmail.com" class="btn-primary">Email</a>
+      <a href="https://www.linkedin.com/in/olena-doroshenko-045a313b0/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn ↗</a>
+      <a href="https://github.com/doroshenkoelen" target="_blank" rel="noopener" class="btn-secondary">GitHub ↗</a>
     </div>
   </div>
 </div>
@@ -346,15 +374,15 @@ const projects = {
     title: 'Augmented Reality Visualization of Hidden Objects Using mmWave Radar and Mobile Displays',
     subtitle: 'A real-time system that uses 60 GHz radar to detect objects hidden behind walls — then renders a holographic 3D model of that object in augmented reality on an iPhone. No markers. No QR codes. Just radar, Wi-Fi, and the phone.',
     mediaHTML: `
-      <div class="modal-img-grid">
-        <img src="IMAGE 2026-04-27 19:33:18.jpg" alt="Unity AR scene"
-          onerror="this.closest('.modal-img-grid').innerHTML='<div class=modal-media><div class=media-hint>Upload IMAGE 2026-04-27 19:33:18.jpg to GitHub</div></div>'">
-        <div class="img-stack">
-          <img src="BlenderBottle.png" alt="Blender bottle"
-            onerror="this.style.background='#141828'">
-          <img src="blenderpowerbank.png" alt="Blender power bank"
-            onerror="this.style.background='#141828'">
-        </div>
+      <img class="modal-hero-img" src="IMAGE 2026-04-27 19:33:18.jpg" alt="Unity AR scene"
+        onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Upload IMAGE 2026-04-27 19:33:18.jpg to GitHub</div></div>'">`,
+    blenderHTML: `
+      <div class="modal-section-title">3D Models — Blender 4.2</div>
+      <div class="modal-blender-grid">
+        <img src="BlenderBottle.png" alt="Blender glass bottle model"
+          onerror="this.style.background='#141828';this.alt='Upload BlenderBottle.png'">
+        <img src="blenderpowerbank.png" alt="Blender power bank model"
+          onerror="this.style.background='#141828';this.alt='Upload blenderpowerbank.png'">
       </div>`,
     stats: [
       {num:'93.3%', label:'Classification accuracy'},
@@ -381,7 +409,6 @@ const projects = {
     ],
     tags:['Unity 6.4','AR Foundation 6.x','ARKit','C#','TI IWR6843AOP','MATLAB','KNN','Blender 4.2','TCP networking','iOS 17+'],
   },
-
   p2: {
     meta: 'Project 02 · WVU Neural Engineering Lab · SURE 2023 + RAP 2023–2024 · First author',
     title: 'Markerless Spatial Motion Capture: A Novel Approach for Diagnosing Infant Movement Pathologies',
@@ -390,7 +417,7 @@ const projects = {
       <div style="margin-bottom:1.75rem;">
         <div class="poster-label">Research poster — SURE 2023</div>
         <img class="poster-img" src="sure_poster.jpg" alt="SURE 2023 poster"
-          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your SURE poster from Google Slides as sure_poster.jpg<br>and upload to GitHub repo</div></div>'">
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your SURE poster as sure_poster.jpg and upload to GitHub</div></div>'">
       </div>`,
     stats: [
       {num:'2D→3D', label:'Coordinate lifting'},
@@ -414,15 +441,11 @@ const projects = {
     ],
     tags:['Python','DeepLabCut','MiDaS','Deep CNNs','MATLAB Simulink','Biomechanical modeling','2D→3D lifting','Markerless pose estimation'],
   },
-
   p3: {
     meta: 'Project 03 · WVU Neural Engineering Lab · 2024 · First author',
     title: 'Neuronal Population Coding for the Inverse Dynamics of a Planar Human Arm Model',
     subtitle: 'A biologically faithful simulation of how the brain computes muscle forces during arm movement — the scientific foundation behind procedural animation, physics-based avatar control, and next-generation motion synthesis for XR.',
-    mediaHTML: `
-      <div class="modal-media">
-        <div class="media-hint">Upload project3.jpg to GitHub repo<br>then replace src in the code</div>
-      </div>`,
+    mediaHTML: `<div class="modal-media"><div class="media-hint">Upload project3.jpg to GitHub repo</div></div>`,
     stats: [
       {num:'Izhikevich', label:'Spiking neuron model'},
       {num:'2-joint', label:'Planar arm model'},
@@ -442,7 +465,6 @@ const projects = {
     ],
     tags:['MATLAB','Python','Izhikevich neuron model','Population coding','Inverse dynamics','Linear algebra','Computational neuroscience'],
   },
-
   p4: {
     meta: 'Project 04 · WVU Mathematics Capstone · Published on bioRxiv · Sole author',
     title: 'Evaluating Evolutionary and Gradient-Based Algorithms for Optimal Pathfinding',
@@ -451,7 +473,7 @@ const projects = {
       <div style="margin-bottom:1.75rem;">
         <div class="poster-label">Conference poster — WVU</div>
         <img class="poster-img" src="capstone_poster.jpg" alt="WVU Capstone poster"
-          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your capstone poster from Google Slides as capstone_poster.jpg<br>and upload to GitHub repo</div></div>'">
+          onerror="this.outerHTML='<div class=modal-media><div class=media-hint>Export your capstone poster as capstone_poster.jpg and upload to GitHub</div></div>'">
       </div>`,
     stats: [
       {num:'60', label:'Total simulation runs'},
@@ -499,6 +521,7 @@ function buildModal(id) {
     <div class="modal-stats">${statsHTML}</div>
     <div class="modal-section-title">About the project</div>
     <div class="modal-bullets">${aboutHTML}</div>
+    ${p.blenderHTML || ''}
     <div class="modal-section-title">Why it matters</div>
     <div class="modal-callout">${p.why}</div>
     <div class="modal-section-title">Results &amp; outcomes</div>
@@ -507,6 +530,17 @@ function buildModal(id) {
 }
 
 let currentModal = null;
+let hoverTimer = null;
+
+function scheduleModal(id) {
+  cancelModal();
+  hoverTimer = setTimeout(() => openModal(id), 1000);
+}
+
+function cancelModal() {
+  if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+}
+
 function openModal(id) {
   if (currentModal === id) return;
   currentModal = id;
@@ -514,14 +548,18 @@ function openModal(id) {
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
   currentModal = null;
+  hoverTimer = null;
   document.getElementById('modalOverlay').classList.remove('active');
   document.body.style.overflow = '';
 }
+
 function closeModalOnBg(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
+
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
