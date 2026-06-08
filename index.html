@@ -154,6 +154,10 @@ section { padding: 5rem 3rem; max-width: 1100px; margin: 0 auto; }
 
 .modal-media { width: 100%; aspect-ratio: 16/8; background: var(--navy3); border-radius: 6px; border: 0.5px solid var(--rule); margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .media-hint { font-family: var(--mono); font-size: 10px; color: var(--muted); text-align: center; letter-spacing: 0.08em; line-height: 1.8; }
+.modal-showcase-img { width: 100%; height: auto; display: block; border-radius: 6px; border: 0.5px solid var(--rule); background: var(--navy3); margin: 0 0 1rem; }
+.modal-visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0 1.75rem; }
+.modal-visual-grid img { width: 100%; height: 230px; object-fit: cover; border-radius: 5px; border: 0.5px solid var(--rule); background: var(--navy3); display: block; }
+.modal-visual-grid img:first-child { object-position: center top; }
 .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1rem; }
 .modal-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.75rem; }
 .mstat { background: var(--navy); border: 0.5px solid var(--rule); border-radius: 5px; padding: 0.9rem 1rem; text-align: center; }
@@ -307,6 +311,24 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
       </div>
     </div>
 
+    <div class="project-card" onmouseenter="scheduleModal('p5')" onmouseleave="cancelModal()" onclick="openModal('p5')">
+      <div class="project-img">
+        <img src="assets/virtual-album/virtual-album-hero.svg" alt="Virtual AR Photo Album overview"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="project-img-placeholder" style="display:none">
+          <div class="project-img-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg></div>
+          <div class="project-img-hint">upload virtual album assets</div>
+        </div>
+        <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
+      </div>
+      <div class="project-info">
+        <div class="project-num">02 / Independent Unity AR Build · 2026</div>
+        <div class="project-name">Virtual AR Photo Album</div>
+        <div class="project-blurb">An iPhone AR app that places a realistic 3D album into the real world, scans physical prints, crops them, and saves persistent virtual pages.</div>
+        <div class="project-tags"><span class="ptag">Unity</span><span class="ptag">ARKit</span><span class="ptag">Mobile AR</span><span class="ptag">Computer Vision</span><span class="ptag">iOS</span></div>
+      </div>
+    </div>
+
     <div class="project-card" onmouseenter="scheduleModal('p2')" onmouseleave="cancelModal()" onclick="openModal('p2')">
       <div class="project-img">
         <img src="sure_poster.jpg" alt="Infant Motion poster"
@@ -318,7 +340,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
       </div>
       <div class="project-info">
-        <div class="project-num">02 / WVU Neural Engineering Lab · 2023–2024</div>
+        <div class="project-num">03 / WVU Neural Engineering Lab · 2023–2024</div>
         <div class="project-name">AI Infant Movement Diagnostic Tool</div>
         <div class="project-blurb">Markerless 3D motion capture from smartphone video for early cerebral palsy screening.</div>
         <div class="project-tags"><span class="ptag">Python</span><span class="ptag">DeepLabCut</span><span class="ptag">CNN</span><span class="ptag">MATLAB</span><span class="ptag">Biomechanics</span></div>
@@ -336,7 +358,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
       </div>
       <div class="project-info">
-        <div class="project-num">03 / WVU Neural Engineering Lab · 2024</div>
+        <div class="project-num">04 / WVU Neural Engineering Lab · 2024</div>
         <div class="project-name">Spiking Neural Network for Arm Motor Control</div>
         <div class="project-blurb">A computational brain model of inverse dynamics — foundation for physics-based avatar motion in XR.</div>
         <div class="project-tags"><span class="ptag">MATLAB</span><span class="ptag">Izhikevich</span><span class="ptag">Neuroscience</span><span class="ptag">Inverse dynamics</span></div>
@@ -354,7 +376,7 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <div class="project-hover-overlay"><span class="overlay-hint">→ click to expand</span></div>
       </div>
       <div class="project-info">
-        <div class="project-num">04 / WVU Mathematics · bioRxiv · 2024</div>
+        <div class="project-num">05 / WVU Mathematics · bioRxiv · 2024</div>
         <div class="project-name">Pathfinding Algorithm Benchmark</div>
         <div class="project-blurb">Head-to-head comparison of GA, PSO, and SQP on nonlinear 3D terrain — published sole-author study.</div>
         <div class="project-tags"><span class="ptag">MATLAB</span><span class="ptag">GA</span><span class="ptag">PSO</span><span class="ptag">SQP</span><span class="ptag">ANOVA</span></div>
@@ -377,6 +399,8 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <span class="skill-tag">iOS deployment</span>
         <span class="skill-tag">TCP networking</span>
         <span class="skill-tag">World-space UI</span>
+        <span class="skill-tag">Mobile AR plane tracking</span>
+        <span class="skill-tag">AR interaction design</span>
       </div>
     </div>
     <div class="skill-group">
@@ -392,9 +416,12 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
       <div class="skill-group-label">Programming</div>
       <div class="skill-tags">
         <span class="skill-tag">Python</span>
+        <span class="skill-tag">Mobile AR prototyping</span>
         <span class="skill-tag">MATLAB</span>
         <span class="skill-tag">Java</span>
         <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Native iOS plugins</span>
+        <span class="skill-tag">Persistent storage</span>
       </div>
     </div>
     <div class="skill-group">
@@ -405,6 +432,9 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <span class="skill-tag">Machine learning (KNN, CNN)</span>
         <span class="skill-tag">Point cloud processing</span>
         <span class="skill-tag">2D→3D lifting</span>
+        <span class="skill-tag">Photo detection</span>
+        <span class="skill-tag">Image cropping</span>
+        <span class="skill-tag">Edge-based segmentation</span>
         <span class="skill-tag">Feature engineering</span>
         <span class="skill-tag">Nonlinear optimization</span>
         <span class="skill-tag">Signal processing</span>
@@ -417,6 +447,15 @@ footer { text-align: center; padding: 1.5rem; font-family: var(--mono); font-siz
         <span class="skill-tag">mmWave FMCW</span>
         <span class="skill-tag">mmWave Studio</span>
         <span class="skill-tag">Point cloud acquisition</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Mobile &amp; Cloud</div>
+      <div class="skill-tags">
+        <span class="skill-tag">iPhone photo library</span>
+        <span class="skill-tag">Google Drive API</span>
+        <span class="skill-tag">OAuth</span>
+        <span class="skill-tag">JPG + JSON manifests</span>
       </div>
     </div>
     <div class="skill-group">
@@ -556,11 +595,11 @@ const projects = {
       {label:'10.5 sec end-to-end detection cycle', detail:'dominated by radar acquisition window, not compute', link:'', linkText:''},
       {label:'93.32% test accuracy', detail:'AUC = 0.980 for both object classes', link:'', linkText:''},
     ],
-    tags:['Unity 6.4','AR Foundation 6.x','ARKit','C#','TI IWR6843AOP','MATLAB','KNN','Blender 4.2','TCP networking','iOS 17+'],
+    tags:['Unity 6.4','AR Foundation 6.x','ARKit','TI IWR6843AOP','MATLAB','KNN','Blender 4.2','TCP networking','iOS 17+'],
   },
 
   p2: {
-    meta: 'Project 02 · WVU Neural Engineering Lab · SURE 2023 + RAP 2023–2024 · First author',
+    meta: 'Project 03 · WVU Neural Engineering Lab · SURE 2023 + RAP 2023–2024 · First author',
     title: 'Markerless Spatial Motion Capture: A Novel Approach for Diagnosing Infant Movement Pathologies',
     subtitle: 'A computer vision pipeline that turns any smartphone video of a moving infant into clinically meaningful 3D motion analysis — making early screening for cerebral palsy accessible anywhere, using only a phone.',
     mediaHTML: null,
@@ -596,7 +635,7 @@ const projects = {
   },
 
   p3: {
-    meta: 'Project 03 · WVU Neural Engineering Lab · 2024 · First author',
+    meta: 'Project 04 · WVU Neural Engineering Lab · 2024 · First author',
     title: 'Neuronal Population Coding for the Inverse Dynamics of a Planar Human Arm Model',
     subtitle: 'A biologically faithful simulation of how the brain computes muscle forces during arm movement — the scientific foundation behind procedural animation, physics-based avatar control, and next-generation motion synthesis for XR.',
     mediaHTML: `<div class="modal-media"><div class="media-hint">Upload project3.jpg to GitHub<br><span style="color:#444;font-size:10px;">Screenshot the visualization and save as project3.jpg</span></div></div>`,
@@ -624,7 +663,7 @@ const projects = {
   },
 
   p4: {
-    meta: 'Project 04 · WVU Mathematics Capstone · Published on bioRxiv · Sole author',
+    meta: 'Project 05 · WVU Mathematics Capstone · Published on bioRxiv · Sole author',
     title: 'Evaluating Evolutionary and Gradient-Based Algorithms for Optimal Pathfinding',
     subtitle: 'A rigorous head-to-head benchmark of three pathfinding algorithms — GA, PSO, and SQP — on a complex nonlinear 3D terrain. 20 simulations each. Statistical testing via ANOVA. SQP wins on both cost and speed.',
     mediaHTML: null,
@@ -662,6 +701,50 @@ const projects = {
       {label:'All performance differences significant', detail:'p &lt; 0.01 (one-way ANOVA)', link:'', linkText:''},
     ],
     tags:['MATLAB','Genetic Algorithm','Particle Swarm Optimization','Sequential Quadratic Programming','Nonlinear optimization','ANOVA','KS test','bioRxiv'],
+  },
+
+  p5: {
+    meta: 'Project 02 · Independent Unity AR Build · 2026 · Mobile AR + Computer Vision',
+    title: 'Virtual AR Photo Album: A Real-World Memory Book in Mobile AR',
+    subtitle: 'An iPhone AR app that anchors a volumetric photo album onto a real surface. Users can scan printed photographs, take camera captures, import from their iPhone photo library, customize the cover, turn pages, delete mistakes, start new albums, and prepare cloud backup through Google Drive.',
+    mediaHTML: `<img class="modal-showcase-img" src="assets/virtual-album/virtual-album-hero.svg" alt="Virtual AR Photo Album hero">`,
+    posterHTML: null,
+    blenderHTML: `
+      <div class="modal-section-title">System workflow</div>
+      <img class="modal-showcase-img" src="assets/virtual-album/virtual-album-workflow.svg" alt="Virtual AR Photo Album workflow">
+      <div class="modal-section-title">Live AR controls</div>
+      <img class="modal-showcase-img" src="assets/virtual-album/virtual-album-button-map.svg" alt="Virtual AR Photo Album button map">
+      <div class="modal-section-title">Photo detection and album storage</div>
+      <div class="modal-visual-grid">
+        <img src="assets/virtual-album/virtual-album-crop-algorithm.svg" alt="Physical photo crop algorithm">
+        <img src="assets/virtual-album/virtual-album-storage.svg" alt="Album customization and storage">
+      </div>`,
+    statsExtra: null,
+    stats: [
+      {num:'3', label:'Input modes: scan, camera, library'},
+      {num:'15', label:'AR controls in the live scene'},
+      {num:'2', label:'Page layouts: wide or paired tall'},
+    ],
+    about: [
+      'Built a mobile AR prototype in Unity using AR Foundation and ARKit for iPhone deployment',
+      'Designed a realistic 3D album with a raised cover, spine, page block, inset cover-photo frame, and interior photo slots',
+      'Implemented AR plane placement so the user can tap a real flat surface and anchor the album in the physical environment',
+      'Added multiple image input paths: scan a printed photograph, capture the live camera view, or select an image from the iPhone photo library',
+      'Developed a lightweight photo-detection pipeline that analyzes the camera frame, searches for paper-like regions, scores rectangular candidates, refines edges, crops the source texture, and saves the result into the album',
+      'Implemented automatic and manual layout control: horizontal photos become one wide page image, while vertical photos can share a page as two tall photos',
+      'Added album management controls: next/previous page, cover photo, editable title, pastel cover colors, delete current photo, empty album, start new album, and contextual help',
+      'Built local persistence through encoded JPG files plus a JSON manifest, so photos remain in the virtual album after the app restarts',
+    ],
+    why: 'Most digital albums flatten memory into a screen gallery. This project explores the opposite: keeping photos digital while restoring the spatial feeling of a physical album. The user places a personal object into the room, customizes its cover, turns pages, and builds a collection through real-world camera interaction.',
+    outcomes: [
+      {label:'Working iPhone AR prototype', detail:'real-time camera background with virtual album placement on detected surfaces', link:'', linkText:''},
+      {label:'Physical-photo scan mode', detail:'rectangle identification, edge refinement, source crop, and page insertion', link:'', linkText:''},
+      {label:'Three ways to add images', detail:'printed photo scan, direct camera capture, and iPhone photo-library import', link:'', linkText:''},
+      {label:'Album customization', detail:'editable title, cover photo, and pastel cover colors', link:'', linkText:''},
+      {label:'Persistent save system', detail:'album photos encoded as JPG files with JSON manifest data in app storage', link:'', linkText:''},
+      {label:'Google Drive backup pathway', detail:'OAuth-based sign-in and dedicated Drive folder upload after client setup', link:'', linkText:''},
+    ],
+    tags:['Unity 6.4','AR Foundation','ARKit','iOS','Mobile AR','Computer Vision','Photo Detection','Image Cropping','Plane Tracking','Native iOS Plugin','Google Drive API','OAuth','Persistent Storage'],
   },
 };
 
