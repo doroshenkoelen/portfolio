@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0e1830"/>
+      <stop offset="1" stop-color="#050b16"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#182640" stroke-width="1"/>
+    </pattern>
+    <style>
+      .kicker{font:700 18px Menlo,Consolas,monospace;letter-spacing:4px;fill:#00d8ff}
+      .title{font:700 46px Inter,Arial,sans-serif;fill:#f7fbff}
+      .h2{font:700 27px Inter,Arial,sans-serif;fill:#f7fbff}
+      .body{font:500 19px Inter,Arial,sans-serif;fill:#a8b4ca}
+      .small{font:600 15px Inter,Arial,sans-serif;fill:#a8b4ca}
+      .mono{font:700 15px Menlo,Consolas,monospace;letter-spacing:2px;fill:#00d8ff}
+      .button{font:700 13px Inter,Arial,sans-serif;fill:#fff}
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <rect width="100%" height="100%" fill="url(#grid)" opacity="0.45"/>
+  
+  <text class="kicker" x="72" y="90">CASE STUDY STRUCTURE</text>
+  <text class="title" x="72" y="154">What the website should communicate first</text>
+  <text class="body" x="72" y="205">A visitor should understand the system in ten seconds: real camera view, virtual 3D album, multiple ways to add photos, persistent saved pages, and practical album management.</text>
+  <rect x="92" y="300" width="660" height="470" rx="14" fill="#0b1528" stroke="#213456" stroke-width="1.4"/>
+  <text class="mono" x="126" y="348">PROJECT SNAPSHOT</text>
+  <text class="h2" x="126" y="410">Virtual AR Photo Album</text>
+  <text class="body" x="126" y="456">Unity AR Foundation app for iPhone that anchors a 3D album in the real world and lets users preserve real or digital photos as virtual pages.</text>
+  <text class="small" x="126" y="535">Best use cases: family memory albums, event installations, AR portfolios, museum/archive demos, printed-photo digitization experiments.</text>
+  <rect x="126" y="610" width="120" height="40" rx="4" fill="#07111f" stroke="#00d8ff"/><text class="mono" x="152" y="636">Unity</text>
+  <rect x="266" y="610" width="156" height="40" rx="4" fill="#07111f" stroke="#00d8ff"/><text class="mono" x="292" y="636">ARKit</text>
+  <rect x="442" y="610" width="230" height="40" rx="4" fill="#07111f" stroke="#00d8ff"/><text class="mono" x="468" y="636">Computer Vision</text>
+  <rect x="820" y="300" width="688" height="470" rx="14" fill="#0b1528" stroke="#213456" stroke-width="1.4"/>
+  <text class="mono" x="854" y="348">FEATURE PROOF</text>
+  <g transform="translate(872 400)">
+    <circle cx="22" cy="22" r="16" fill="#06101e" stroke="#00d8ff" stroke-width="3"/><text class="body" x="58" y="30">Real-world AR plane placement</text>
+    <circle cx="22" cy="92" r="16" fill="#06101e" stroke="#00d8ff" stroke-width="3"/><text class="body" x="58" y="100">Volumetric album with cover, spine, pages</text>
+    <circle cx="22" cy="162" r="16" fill="#06101e" stroke="#00d8ff" stroke-width="3"/><text class="body" x="58" y="170">Physical print scan + crop algorithm</text>
+    <circle cx="22" cy="232" r="16" fill="#06101e" stroke="#00d8ff" stroke-width="3"/><text class="body" x="58" y="240">iPhone photo library import</text>
+    <circle cx="22" cy="302" r="16" fill="#06101e" stroke="#00d8ff" stroke-width="3"/><text class="body" x="58" y="310">Delete, empty, new album, Drive backup path</text>
+  </g>
+
+</svg>

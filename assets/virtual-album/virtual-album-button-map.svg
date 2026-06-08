@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0e1830"/>
+      <stop offset="1" stop-color="#050b16"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.03"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.42"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#182640" stroke-width="1"/>
+    </pattern>
+    <style>
+      .kicker{font:700 18px Menlo,Consolas,monospace;letter-spacing:4px;fill:#00d8ff}
+      .title{font:700 46px Inter,Arial,sans-serif;fill:#f7fbff}
+      .h2{font:700 27px Inter,Arial,sans-serif;fill:#f7fbff}
+      .body{font:500 19px Inter,Arial,sans-serif;fill:#a8b4ca}
+      .small{font:600 15px Inter,Arial,sans-serif;fill:#a8b4ca}
+      .mono{font:700 15px Menlo,Consolas,monospace;letter-spacing:2px;fill:#00d8ff}
+      .button{font:700 13px Inter,Arial,sans-serif;fill:#fff}
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <rect width="100%" height="100%" fill="url(#grid)" opacity="0.45"/>
+  
+  <text class="kicker" x="72" y="90">AR UI MAP</text>
+  <text class="title" x="72" y="154">Every button in the live iPhone scene</text>
+  <text class="body" x="72" y="205">Bottom controls keep the album visible while the user adds photos, edits pages, or backs up the album.</text>
+  <rect x="110" y="260" width="1380" height="600" rx="16" fill="#0b1528" stroke="#213456" stroke-width="1.4"/>
+  <rect x="110" y="260" width="1380" height="600" rx="16" fill="#151515" opacity="0.38"/>
+  <rect x="160" y="300" width="32" height="32" fill="#d93d3a"/>
+  <rect x="208" y="300" width="32" height="32" fill="#c9dfc7"/>
+  <rect x="256" y="300" width="32" height="32" fill="#b6d3e5"/>
+  <rect x="304" y="300" width="32" height="32" fill="#c9b6dc"/>
+  <rect x="350" y="300" width="260" height="32" fill="#efe7d8"/>
+  <text class="small" x="650" y="324">pastel album color swatches + hidden title input</text>
+  <rect x="160" y="370" width="1280" height="70" fill="#050505" opacity="0.62"/>
+  <text class="body" x="800" y="414" text-anchor="middle">ADD PHOTO scans a printed photo. TAKE PHOTO saves the camera view. LIBRARY imports from iPhone Photos.</text>
+  <g filter="url(#shadow)"><polygon points="590,523 818,491.5 849.5,640 618.5,676" fill="#c9b6dc" stroke="#ff9d8e" stroke-width="2.5"/>
+       <polygon points="618.5,676 849.5,640 842,665.5 611,700" fill="#efece1"/>
+       <rect x="691.25" y="557.5" width="66" height="52.5" rx="5" fill="#f7fbff" opacity="0.96"/>
+       <text x="717.5" y="632.5" text-anchor="middle" font-family="Inter,Arial" font-weight="700" font-size="15" fill="#fff">Album name</text>
+    <polygon points="576.5,527.5 602,523 630.5,676 605,682" fill="#8f2736" opacity="0.92"/>
+    <path d="M606.5 542.5 C623 569.5, 626 643.75, 607.25 673" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="5.25"/>
+  </g>
+  <g><rect x="230" y="760" width="120" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="290" y="782" text-anchor="middle">ADD PHOTO</text><rect x="364" y="760" width="120" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="424" y="782" text-anchor="middle">TAKE PHOTO</text><rect x="498" y="760" width="120" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="558" y="782" text-anchor="middle">LIBRARY</text><rect x="632" y="760" width="120" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="692" y="782" text-anchor="middle">COVER</text><rect x="766" y="760" width="120" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="826" y="782" text-anchor="middle">NAME</text><rect x="248" y="808" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="294" y="830" text-anchor="middle">PREV</text><rect x="354" y="808" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="400" y="830" text-anchor="middle">NEXT</text><rect x="460" y="808" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="506" y="830" text-anchor="middle">WIDE</text><rect x="566" y="808" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="612" y="830" text-anchor="middle">TALL</text><rect x="672" y="808" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="718" y="830" text-anchor="middle">COLOR</text><rect x="248" y="856" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="294" y="878" text-anchor="middle">DEL</text><rect x="354" y="856" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="400" y="878" text-anchor="middle">EMPTY</text><rect x="460" y="856" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="506" y="878" text-anchor="middle">NEW</text><rect x="566" y="856" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="612" y="878" text-anchor="middle">DRIVE</text><rect x="672" y="856" width="92" height="34" rx="3" fill="#111" opacity="0.88"/><text class="button" x="718" y="878" text-anchor="middle">HELP</text></g>
+  <g>
+    <rect x="196" y="900" width="245" height="52" rx="8" fill="#08101e" stroke="#213456"/>
+    <text class="mono" x="216" y="922">CAPTURE</text>
+    <text class="small" x="216" y="944">ADD PHOTO · TAKE · LIBRARY</text>
+    <rect x="475" y="900" width="245" height="52" rx="8" fill="#08101e" stroke="#213456"/>
+    <text class="mono" x="495" y="922">CUSTOMIZE</text>
+    <text class="small" x="495" y="944">COVER · NAME · COLOR</text>
+    <rect x="754" y="900" width="245" height="52" rx="8" fill="#08101e" stroke="#213456"/>
+    <text class="mono" x="774" y="922">PAGES</text>
+    <text class="small" x="774" y="944">PREV · NEXT · WIDE · TALL</text>
+    <rect x="1033" y="900" width="310" height="52" rx="8" fill="#08101e" stroke="#213456"/>
+    <text class="mono" x="1053" y="922">MANAGE</text>
+    <text class="small" x="1053" y="944">DEL · EMPTY · NEW · DRIVE · HELP</text>
+  </g>
+
+</svg>
